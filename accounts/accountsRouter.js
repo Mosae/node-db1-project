@@ -15,4 +15,18 @@ router.get('/', (req, res) => {
 			res.status(500).json({ message: error.message });
 		});
 });
+
+router.get('/:id', (req, res) => {
+	db('accounts')
+		.where({ id: req.params.id })
+		.then((account) => {
+			res.status(200).json(account);
+		})
+		.catch((error) => {
+			res.status(500).json({ message: error.message });
+		});
+});
+
+// router.put();
+// router.delete();
 module.exports = router;
